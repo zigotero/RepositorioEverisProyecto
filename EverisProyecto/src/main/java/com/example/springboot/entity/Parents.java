@@ -61,91 +61,16 @@ public class Parents {
 			joinColumns = @JoinColumn(name = "parents_id"),
 			inverseJoinColumns = @JoinColumn(name = "students_id") )
 	//private List<Students>studentsReferences = new ArrayList<Students>();
-	private Set<Students>studentsReferences;
+	private List<Students>studentsReferences;
 	
-	@OneToMany(mappedBy = "parentReferences",fetch = FetchType.LAZY)
-	private List<FamilyMenbers> familyMenbersRefrences;
+	@OneToMany(mappedBy = "familyMenberReferencesToParents",fetch = FetchType.LAZY)
+	private List<FamilyMenbers> parentsRefrencesToFamilyMenbers;
 	
 	@ManyToOne()
 	@JoinColumn(name = "family_id")
-	private Families familyReferences;
-
+	private Families parentsRefrencesToFamily;
 	
-	/*
-	public int getParentsId() {
-		return parentsId;
-	}
 
-	public void setParentsId(int parentsId) {
-		this.parentsId = parentsId;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getMiddleName() {
-		return MiddleName;
-	}
-
-	public void setMiddleName(String middleName) {
-		MiddleName = middleName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getOtherParentDetails() {
-		return otherParentDetails;
-	}
-
-	public void setOtherParentDetails(String otherParentDetails) {
-		this.otherParentDetails = otherParentDetails;
-	}
-
-	public List<Students> getStudentsReferences() {
-		return studentsReferences;
-	}
-
-	public void setStudentsReferences(List<Students> studentsReferences) {
-		this.studentsReferences = studentsReferences;
-	}
-
-	public List<FamilyMenbers> getFamilyMenbersRefrences() {
-		return familyMenbersRefrences;
-	}
-
-	public void setFamilyMenbersRefrences(List<FamilyMenbers> familyMenbersRefrences) {
-		this.familyMenbersRefrences = familyMenbersRefrences;
-	}
-
-	public Families getFamilyReferences() {
-		return familyReferences;
-	}
-
-	public void setFamilyReferences(Families familyReferences) {
-		this.familyReferences = familyReferences;
-	}
-	
-	
-	*/
 	
 
 

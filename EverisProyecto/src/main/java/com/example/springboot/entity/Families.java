@@ -1,6 +1,7 @@
 package com.example.springboot.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,60 +16,31 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name="families")
 public class Families {
 	
 	
 	// camps
 	@Id
-	@Column(name="families_id",nullable = false)
+	@Column(name="families_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int familiesId;
 	
-	@Column(name = "family_name",nullable = false)
+	@Column(name = "family_name")
 	private String familyName;
 	
 	
 	//relationships
 	
-	@OneToMany(mappedBy = "familyReferences", cascade = CascadeType.ALL , fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<Parents> parentsReferences;
+	@OneToMany(mappedBy = "parentsRefrencesToFamily" , fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<Parents> familyRefrencesToParents;
 	
-	@OneToMany(mappedBy = "familytReferences", cascade = CascadeType.ALL , fetch = FetchType.LAZY)
-	private List<FamilyMenbers> familyMenbersRefrences;
-
-	public int getFamiliesId() {
-		return familiesId;
-	}
-
-	public void setFamiliesId(int familiesId) {
-		this.familiesId = familiesId;
-	}
-
-	public String getFamilyName() {
-		return familyName;
-	}
-
-	public void setFamilyName(String familyName) {
-		this.familyName = familyName;
-	}
-
-	public List<Parents> getParentsReferences() {
-		return parentsReferences;
-	}
-
-	public void setParentsReferences(List<Parents> parentsReferences) {
-		this.parentsReferences = parentsReferences;
-	}
-
-	public List<FamilyMenbers> getFamilyMenbersRefrences() {
-		return familyMenbersRefrences;
-	}
-
-	public void setFamilyMenbersRefrences(List<FamilyMenbers> familyMenbersRefrences) {
-		this.familyMenbersRefrences = familyMenbersRefrences;
-	}
+	@OneToMany(mappedBy = "familyMenberReferencesToFamily" , fetch = FetchType.LAZY)
+	private List<FamilyMenbers> familiesRefrenecesToFamilyMenbers;
 
 	
 	
