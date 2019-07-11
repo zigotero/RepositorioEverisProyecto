@@ -62,11 +62,13 @@ public class Parents {
 			inverseJoinColumns = @JoinColumn(name = "students_id") )
 	private List<Students>studentsReferences;
 	
-	@OneToMany(mappedBy = "familyMenberReferencesToParents",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "familyMenberReferencesToParents",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("familyMenberReferencesToParents")
 	private List<FamilyMenbers> parentsRefrencesToFamilyMenbers;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "family_id")
+	@JsonIgnoreProperties("familyRefrencesToParents")
 	private Families parentsRefrencesToFamily;
 	
 

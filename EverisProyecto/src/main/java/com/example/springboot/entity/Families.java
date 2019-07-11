@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Entity
@@ -37,9 +39,11 @@ public class Families {
 	//relationships
 	
 	@OneToMany(mappedBy = "parentsRefrencesToFamily" , fetch = FetchType.LAZY, orphanRemoval = true)
+	@JsonIgnoreProperties("parentsRefrencesToFamily")
 	private List<Parents> familyRefrencesToParents;
 	
 	@OneToMany(mappedBy = "familyMenberReferencesToFamily" , fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("familyMenberReferencesToFamily")
 	private List<FamilyMenbers> familiesRefrenecesToFamilyMenbers;
 
 	

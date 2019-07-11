@@ -61,6 +61,7 @@ public class Students {
 	private List<Parents>parentsRefrences;
 	
 	@OneToMany(mappedBy = "familyMenbersReferencesToStudent", fetch = FetchType.LAZY, orphanRemoval = true)
+	@JsonIgnoreProperties("familyMenbersReferencesToStudent")
 	private List<FamilyMenbers> studentRefrencesToFamilyMenbers;
 	
 	

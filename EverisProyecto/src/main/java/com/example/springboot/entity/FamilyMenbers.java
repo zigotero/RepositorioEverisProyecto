@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -42,17 +43,20 @@ public class FamilyMenbers {
 	//is recommended not to use cascadetype.all
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="students_id")
-	@JsonBackReference("familyMenbersReferencesToStudent")
+	//@JsonBackReference("familyMenbersReferencesToStudent")
+	@JsonIgnoreProperties("studentRefrencesToFamilyMenbers")
 	private Students familyMenbersReferencesToStudent;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="parents_id")
-	@JsonBackReference("familyMenberReferencesToParents")
+	//@JsonBackReference("familyMenberReferencesToParents")
+	@JsonIgnoreProperties("parentsRefrencesToFamilyMenbers")
 	private Parents familyMenberReferencesToParents;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "family_id")
-	@JsonBackReference("familyMenberReferencesToFamily")
+	//@JsonBackReference("familyMenberReferencesToFamily")
+	@JsonIgnoreProperties("familiesRefrenecesToFamilyMenbers")
 	private Families familyMenberReferencesToFamily;
 
 	
