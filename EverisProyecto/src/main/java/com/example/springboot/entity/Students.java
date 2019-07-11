@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -56,7 +57,7 @@ public class Students {
 	
 	
 	@ManyToMany(mappedBy = "studentsReferences", fetch = FetchType.LAZY)
-	
+	@JsonIgnoreProperties("studentsReferences")
 	private List<Parents>parentsRefrences;
 	
 	@OneToMany(mappedBy = "familyMenbersReferencesToStudent", fetch = FetchType.LAZY, orphanRemoval = true)

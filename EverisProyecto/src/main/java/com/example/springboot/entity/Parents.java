@@ -1,9 +1,8 @@
 package com.example.springboot.entity;
 
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -56,11 +56,10 @@ public class Parents {
 	//relationships
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JsonBackReference
+	@JsonIgnoreProperties("parentsRefrences")
 	@JoinTable(name = "student_parents",
 			joinColumns = @JoinColumn(name = "parents_id"),
 			inverseJoinColumns = @JoinColumn(name = "students_id") )
-	//private List<Students>studentsReferences = new ArrayList<Students>();
 	private List<Students>studentsReferences;
 	
 	@OneToMany(mappedBy = "familyMenberReferencesToParents",fetch = FetchType.LAZY)
