@@ -61,8 +61,8 @@ public class Parents {
 			joinColumns = @JoinColumn(name = "parents_id"),
 			inverseJoinColumns = @JoinColumn(name = "students_id") )
 	private List<Students>studentsReferences;
-	
-	@OneToMany(mappedBy = "familyMenberReferencesToParents",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	//eager consulta toda la base de datos, desventaja hace mas lento
+	@OneToMany(mappedBy = "familyMenberReferencesToParents",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JsonIgnoreProperties("familyMenberReferencesToParents")
 	private List<FamilyMenbers> parentsRefrencesToFamilyMenbers;
 	

@@ -1,4 +1,4 @@
-package com.example.springboot.security;
+package com.example.springboot.confiuration;
 
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
