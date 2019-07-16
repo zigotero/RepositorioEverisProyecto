@@ -37,12 +37,13 @@ public class Families {
 	
 	
 	//relationships
-	
+	/*
 	@OneToMany(mappedBy = "parentsRefrencesToFamily" , fetch = FetchType.LAZY, orphanRemoval = true)
 	@JsonIgnoreProperties("parentsRefrencesToFamily")
 	private List<Parents> familyRefrencesToParents;
+	*/
 	
-	@OneToMany(mappedBy = "familyMenberReferencesToFamily" , fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "familyMenberReferencesToFamily" , fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("familyMenberReferencesToFamily")
 	private List<FamilyMenbers> familiesRefrenecesToFamilyMenbers;
 

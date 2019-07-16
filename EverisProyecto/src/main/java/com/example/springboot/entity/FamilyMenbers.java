@@ -41,17 +41,18 @@ public class FamilyMenbers {
 	
 
 	//is recommended not to use cascadetype.all
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="students_id")
 	//@JsonBackReference("familyMenbersReferencesToStudent")
-	@JsonIgnoreProperties("studentRefrencesToFamilyMenbers")
+	//@JsonIgnoreProperties("studentRefrencesToFamilyMenbers")
 	private Students familyMenbersReferencesToStudent;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="parents_id")
 	//@JsonBackReference("familyMenberReferencesToParents")
 	@JsonIgnoreProperties("parentsRefrencesToFamilyMenbers")
 	private Parents familyMenberReferencesToParents;
+	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "family_id")

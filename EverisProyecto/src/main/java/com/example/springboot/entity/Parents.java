@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -55,16 +56,20 @@ public class Parents {
 		
 	//relationships
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("parentsRefrences")
+	@ManyToMany(cascade = CascadeType.ALL, fetch =  FetchType.EAGER)
+	@JsonIgnoreProperties("parentsRefrences")		
 	@JoinTable(name = "student_parents",
-			joinColumns = @JoinColumn(name = "parents_id"),
+			joinColumns = @JoinColumn(name = "parents_id"  ),
 			inverseJoinColumns = @JoinColumn(name = "students_id") )
+			
 	private List<Students>studentsReferences;
+	
+	
 	//eager consulta toda la base de datos, desventaja hace mas lento
-	@OneToMany(mappedBy = "familyMenberReferencesToParents",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "familyMenberReferencesToParents",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonIgnoreProperties("familyMenberReferencesToParents")
-	private List<FamilyMenbers> parentsRefrencesToFamilyMenbers;
+	private  FamilyMenbers parentsRefrencesToFamilyMenbers;
+	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "family_id")

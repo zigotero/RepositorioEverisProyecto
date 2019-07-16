@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -56,13 +57,14 @@ public class Students {
 	//relationships
 	
 	
-	@ManyToMany(mappedBy = "studentsReferences", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "studentsReferences", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonIgnoreProperties("studentsReferences")
 	private List<Parents>parentsRefrences;
 	
-	@OneToMany(mappedBy = "familyMenbersReferencesToStudent", fetch = FetchType.LAZY, orphanRemoval = true)
+	
+	@OneToOne(mappedBy = "familyMenbersReferencesToStudent", fetch = FetchType.LAZY, orphanRemoval = true)
 	@JsonIgnoreProperties("familyMenbersReferencesToStudent")
-	private List<FamilyMenbers> studentRefrencesToFamilyMenbers;
+	private FamilyMenbers studentRefrencesToFamilyMenbers;
 	
 	
 	
